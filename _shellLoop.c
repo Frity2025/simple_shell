@@ -1,4 +1,4 @@
-#include "simpleshell.h"
+#include "shell.h"
 
 /**
 * _cmnd - it prepare the command line
@@ -22,5 +22,3 @@ return (NULL);
 
 return (input);
 }
-
-

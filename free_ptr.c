@@ -1,5 +1,4 @@
-
-#include "simpleshell.h"
+#include "shell.h"
 /**
  * ptr_free -free two dimensional array
  * @argv: free two dimensional array.
