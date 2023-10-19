@@ -7,23 +7,10 @@
  */
 void fun(char **argv)
 {
-	int count = fork();
-        switch (count)
+	if (argv != NULL)
 	{
-		case '-1':
-			perror("(Input is wrong) ");
-		case '0':
-			{
-				if (argv != NULL)
-				{
-					if (execve(loc_search(argv[0]), argv, NULL) == -1)
-						exit(1);
-				}
-			}
-		default:
-			{
-				wait(&i);
-			}
+		if (execve(loc_search(argv[0]), argv, NULL) == -1)
+			perror("(Wrong inpu)i");
 	}
 }
 /**
@@ -38,19 +25,19 @@ char *loc_search(char *command)
 	char **buf, *newbuf, *new_file;
 	struct stat statbuf;
 
-	if (stat(cmnd, &statbuf) == 0)
-		return (cmnd);
+	if (stat(command, &statbuf) == 0)
+		return (command);
 	newbuf = getenv("buf");
 	if (newbuf != NULL)
 	{
-		for (i = 0, num = 1; newbuf[i] != '\0'; i++)
-			if (newbuf[i] == ':')
+		for (a = 0, num = 1; newbuf[a] != '\0'; a++)
+			if (newbuf[a] == ':')
 				num ++;
 		buf = _tokenization(newbuf, ':', num);
-		for (i = 0; buf[i] != NULL; i++)
+		for (a = 0; buf[a] != NULL; a++)
 		{
-			new_file = malloc(strlen(command) + strlen(buf[i]) + 2);
-			strcpy(new_file, buf[i]);
+			new_file = malloc(strlen(command) + strlen(buf[a]) + 2);
+			strcpy(new_file, buf[a]);
 			strcat(new_file, "/");
 			strcat(new_file, command);
 			strcat(new_file, "\0");
@@ -75,7 +62,7 @@ char *loc_search(char *command)
 char **_tokenization(char *str, char delimiter, int length)
 {
 	int i, j, count;
-	char **buf, *s;
+	char **buf, *s, *buf_new;
 
 	buf_new = malloc(sizeof(char *) * length);
 	i = 0;
